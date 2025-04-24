@@ -48,23 +48,23 @@ function inputDecimal(dot) {
 }
 
 function handleOperator(nextOperator) {
-    const inputValue = parseFloat(displayValue);
+  const inputValue = parseFloat(displayValue);
 
-    if (operator && waitingForSecondOperand)  {
-        operator = nextOperator;
-        return;
-    }
-
-    if (firstOperand === null && !isNaN(inputValue)) {
-        firstOperand = inputValue;
-    } else if (operator) {
-        const result = calculate(firstOperand, inputValue, operator);
-        displayValue = `${parseFloat(result.toFixed(7))}`;
-        firstOperand = result;
-    }
-
-    waitingForSecondOperand = true;
+  if (operator && waitingForSecondOperand) {
     operator = nextOperator;
+    return;
+  }
+
+  if (firstOperand === null && !isNaN(inputValue)) {
+    firstOperand = inputValue;
+  } else if (operator) {
+    const result = calculate(firstOperand, inputValue, operator);
+    displayValue = `${parseFloat(result.toFixed(7))}`;
+    firstOperand = result;
+  }
+
+  waitingForSecondOperand = true;
+  operator = nextOperator;
 }
 
 function calculate(firstOperand, secondOperand, operator) {
@@ -89,15 +89,15 @@ function resetCalculator() {
   waitingForSecondOperand = false;
 }
 
-function performCalculation(){
-    const inputValue = parseFloat(displayValue);
-    if (operator) {
-        const result = calculate(firstOperand, inputValue, operator);
-        displayValue = `${parseFloat(result.toFixed(7))}`;
-        firstOperand = result;
-        operator = null;
-        waitingForSecondOperand = true;
-    }
+function performCalculation() {
+  const inputValue = parseFloat(displayValue);
+  if (operator) {
+    const result = calculate(firstOperand, inputValue, operator);
+    displayValue = `${parseFloat(result.toFixed(7))}`;
+    firstOperand = result;
+    operator = null;
+    waitingForSecondOperand = true;
+  }
 }
 
 updateDisplay();
