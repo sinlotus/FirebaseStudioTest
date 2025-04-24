@@ -100,4 +100,36 @@ function performCalculation() {
   }
 }
 
+document.getElementById("clear").addEventListener("click", () => {
+  resetCalculator();
+  updateDisplay();
+});
+
+document.getElementById("equal").addEventListener("click", () => {
+  performCalculation();
+  updateDisplay();
+});
+
+document.getElementById("dot").addEventListener("click", () => {
+  inputDecimal(".");
+  updateDisplay();
+});
+
+const numberButtons = document.querySelectorAll('[id^="number"]');
+numberButtons.forEach(button => {
+  button.addEventListener("click", () => {
+    inputDigit(button.textContent);
+    updateDisplay();
+  });
+});
+
+const operatorButtons = document.querySelectorAll('.operator');
+operatorButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        handleOperator(button.value);
+        updateDisplay();
+    });
+});
+
+
 updateDisplay();
